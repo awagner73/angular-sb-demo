@@ -1,0 +1,26 @@
+server:
+  port:
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.xml
+  h2:
+    console:
+      enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  packages-to-scan: de.abdata.dale
+  show-actuator: off
+  api-docs:
+    enabled: false

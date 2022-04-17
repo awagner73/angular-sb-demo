@@ -1,0 +1,62 @@
+<div class="container-fluid">
+  <div class="row pb-md-5">
+    <div class="col-md-4">
+      <form [formGroup]="darlehenForm" (ngSubmit)="submit()">
+        <div class="form-group">
+          <label for="anwender">Anwender</label>
+          <input type="text" class="form-control" id="anwender" formControlName="anwender" [ngClass]="getValidationClass(darlehenForm.get('anwender'))">
+          <div class="invalid-feedback">
+            Der Anwender muss angegeben werden.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="dalenummerbank">Darlehensnr.</label>
+          <input type="text" class="form-control" id="dalenummerbank" formControlName="dalenummerbank" [ngClass]="getValidationClass(darlehenForm.get('dalenummerbank'))">
+          <div class="invalid-feedback">
+            Die Darlehensnr. muss angegeben werden.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="laufzeitende">Lfz Ende</label>
+          <input type="text" class="form-control" id="laufzeitende" formControlName="laufzeitende" [ngClass]="getValidationClass(darlehenForm.get('laufzeitende'))">
+          <div class="invalid-feedback">
+            <span *ngIf="darlehenForm.get('laufzeitende').errors?.required">
+              Das Laufzeitende muss angegeben werden.
+            </span>
+            <span *ngIf="darlehenForm.get('laufzeitende').errors?.pattern">
+              Das Format für Laufzeitende muss TT.MM.JJJJ sein.
+            </span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="festzinsdatum">Festzinsdatum</label>
+          <input type="text" class="form-control" id="festzinsdatum" formControlName="festzinsdatum">
+          <div class="invalid-feedback">
+            <span *ngIf="darlehenForm.get('laufzeitende').errors?.required">
+              Das Festzinsdatum muss angegeben werden.
+            </span>
+            <span *ngIf="darlehenForm.get('laufzeitende').errors?.pattern">
+              Das Format für Festzinsdatum muss TT.MM.JJJJ sein.
+            </span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="darlehensbetrag">Darlehensbetrag</label>
+          <input type="number" class="form-control" id="darlehensbetrag" formControlName="darlehensbetrag" step="any" min="0">
+        </div>
+        <div class="form-group">
+          <label for="restschuld">Restschuld</label>
+          <input type="text" class="form-control" id="restschuld" formControlName="restschuld">
+        </div>
+        <div class="form-group">
+          <label for="status">Status</label>
+          <select id="status" class="form-control" formControlName="status" [ngClass]="getValidationClass(darlehenForm.get('status'))">
+            <option selected value="" disabled>Auswählen...</option>
+            <option *ngFor="let status of status" [ngValue]="status.value">{{status.bezeichnung}}</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Erstellen</button>
+      </form>
+    </div>
+  </div>
+</div>

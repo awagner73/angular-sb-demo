@@ -1,0 +1,19 @@
+<nav class="pb-md-2">
+  <header class="title-bar py-md-1">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-8">
+          <a routerLink="/overview">Darlehen Übersicht</a> | Mandant Testhausen | Rathaus Testhausen
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="card-overview container-fluid">
+    <div class="row">
+      <app-suche-card class="col-md-3 border-right border-white"></app-suche-card>
+      <app-bezugsobjekt-info class="col-md-7"></app-bezugsobjekt-info>
+      <app-row-info class="col-md-2 border-left border-white"></app-row-info>
+    </div>
+  </div>
+</nav>
+<router-outlet></router-outlet>

@@ -1,0 +1,81 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd"
+        logicalFilePath="db.changelog-master.xml">
+    <changeSet id="1" author="Jan Marten">
+        <createTable tableName="darlehen">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="uuid" type="UUID"/>
+            <column name="anwender" type="VARCHAR(8)"/>
+            <column name="typ" type="VARCHAR(1)" defaultValue="P"/>
+            <column name="status" type="VARCHAR(1)" defaultValue="G"/>
+            <column name="art" type="INT" defaultValue="2"/>
+            <column name="belegart" type="VARCHAR(1)"/>
+            <column name="kennzeichen" type="VARCHAR(1)"/>
+            <column name="dale_nr_bank" type="VARCHAR(50)"/>
+            <column name="wiedervorlage_datum" type="DATE"/>
+            <column name="wiedervorlage_grund" type="VARCHAR(255)"/>
+            <column name="darlehen" type="VARCHAR(30)"/>
+            <column name="beschreibung" type="VARCHAR(100)"/>
+            <column name="bemerkung" type="CLOB"/>
+            <column name="vorgaenger_darlehen" type="VARCHAR(30)"/>
+            <column name="vorgaenger_betrag" type="DECIMAL(18,6)"/>
+            <column name="betrag" type="DECIMAL(18,6)"/>
+            <column name="vertragsdatum" type="DATE"/>
+            <column name="festzinsdatum" type="DATE"/>
+            <column name="berechnungsziel" type="INT" defaultValue="3"/>
+            <column name="auszahl_betrag" type="DECIMAL(14,2)"/>
+            <column name="auszahl_datum" type="VARCHAR(10)"/>
+            <column name="auszahl_flag" type="VARCHAR(1)"/>
+            <column name="berechnung_start" type="VARCHAR(10)"/>
+            <column name="ratenanzahl" type="INT"/>
+            <column name="endwert" type="DECIMAL(14,2)"/>
+            <column name="laufzeit_monate" type="INT"/>
+            <column name="laufzeitende" type="VARCHAR(10)"/>
+            <column name="disagio_ab" type="VARCHAR(10)"/>
+            <column name="disagio_bis" type="VARCHAR(10)"/>
+            <column name="disagio_fix" type="DECIMAL(14,2)"/>
+            <column name="disagio_proz" type="DECIMAL(9,6)"/>
+            <column name="agio_fix" type="DECIMAL(14,2)"/>
+            <column name="agio_proz" type="DECIMAL(9,6)"/>
+            <column name="zins_nominal" type="DECIMAL(18,6)"/>
+            <column name="zins_betrag" type="DECIMAL(18,6)"/>
+            <column name="zins_rhythmus" type="INT"/>
+            <column name="zins_ab" type="VARCHAR(10)"/>
+            <column name="zins_kalender" type="INT"/>
+            <column name="tilg_proz" type="DECIMAL(18,6)"/>
+            <column name="tilg_betrag" type="DECIMAL(18,6)"/>
+            <column name="tilg_rhythmus" type="INT"/>
+            <column name="tilg_ab" type="VARCHAR(10)"/>
+            <column name="zahlung_proz" type="DECIMAL(18,6)"/>
+            <column name="zahlung_betrag" type="DECIMAL(18,6)"/>
+            <column name="zahlung_rhythmus" type="INT"/>
+            <column name="zahlung_ab" type="VARCHAR(10)"/>
+            <column name="zins_bereitsst_proz" type="DECIMAL(8,6)"/>
+            <column name="zins_bereitsst_betrag" type="DECIMAL(18,6)"/>
+            <column name="zins_bereitsst_rhythmus" type="INT"/>
+            <column name="zins_bereitsst_ab" type="VARCHAR(10)"/>
+            <column name="zins_bereitsst_dat" type="VARCHAR(10)"/>
+            <column name="zins_bereitsst_flag" type="BOOLEAN"/>
+            <column name="gebuehr_fix_proz" type="DECIMAL(18,6)"/>
+            <column name="gebuehr_fix_betrag" type="DECIMAL(18,6)"/>
+            <column name="gebuehr_fix_rhythmus" type="INT"/>
+            <column name="gebuehr_ab" type="VARCHAR(10)"/>
+            <column name="gebuehr_bis" type="VARCHAR(10)"/>
+            <column name="gebuehr_bis_flag" type="BOOLEAN"/>
+            <column name="owner" type="VARCHAR(30)"/>
+            <column name="tstamp" type="DATETIME"/>
+        </createTable>
+
+        <createSequence sequenceName="darlehen_sequence" startValue="1000" incrementBy="50"/>
+    </changeSet>
+
+    <changeSet id="2" author="Jan Marten">
+        <loadData tableName="darlehen"
+                  file="export.csv" relativeToChangelogFile="true"
+                  separator=";"/>
+    </changeSet>
+</databaseChangeLog>

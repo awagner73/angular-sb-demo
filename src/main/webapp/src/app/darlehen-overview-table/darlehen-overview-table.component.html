@@ -1,0 +1,30 @@
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <th scope="col">Anw.</th>
+    <th scope="col">Zahlungsempfänger</th>
+    <th scope="col">Darlehensnr.</th>
+    <th scope="col">Lfz Ende</th>
+    <th scope="col">Festzinsdatum</th>
+    <th scope="col">Darlehensbetrag</th>
+    <th scope="col">Restschuld</th>
+    <th scope="col">Status</th>
+    <th scope="col">Aktion</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let darlehen of darlehen">
+    <td>{{darlehen.anwender}}</td>
+    <td>TODO</td>
+    <td>{{darlehen.dalenummerbank}}</td>
+    <td>{{darlehen.laufzeitende}}</td>
+    <td>{{darlehen.festzinsdatum}}</td>
+    <td>{{darlehen.darlehensbetrag | number:'1.2'}}</td>
+    <td></td>
+    <td>{{ statusBeschreibung(darlehen.status) }}</td>
+    <td>
+      <button type="button" class="btn btn-secondary btn-sm" (click)="clickX(darlehen)">X</button>
+    </td>
+  </tr>
+  </tbody>
+</table>

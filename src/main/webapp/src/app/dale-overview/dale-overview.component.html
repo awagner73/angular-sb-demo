@@ -1,0 +1,24 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      <h4>Darlehen Übersicht</h4>
+    </div>
+    <div class="col-md">
+      <a routerLink="/create">+ Neues Darlehen anlegen</a>
+    </div>
+    <div class="col-md-2 pb-md-2">
+      <button type="button" class="btn btn-secondary mx-md-1">Spalten</button>
+      <button type="button" class="btn btn-secondary mx-md-1">Filter</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 table-wrapper">
+      <app-darlehen-overview-table (action)="deleteDarlehen($event)" *ngIf="(daleOverview$ | async) as overview; else loading" [darlehen]="overview?.darlehen">
+      </app-darlehen-overview-table>
+
+      <ng-template #loading>
+        Lade Daten ...
+      </ng-template>
+    </div>
+  </div>
+</div>
